@@ -1,0 +1,23 @@
+<swiper class="mySwiper"
+    [slidesPerView]="1"
+    [spaceBetween]="50"
+    [pagination]="{
+      clickable: true
+    }"
+>
+  <ng-template
+    *ngFor="let round of rounds"
+    swiperSlide
+
+  >
+    <h1 class="title">Georgian Beasts <span>PASS ROYALE</span> Championship</h1>
+    <div class="tournament-title">{{ round.roundTitle }}</div>
+    <ul class="tournament">
+        <li class="tournament-item" *ngFor="let game of round.games">
+            <div [ngClass]="{ 'winner winner-left': game.winner === 'player1' }">{{ game.playerOne }} <img *ngIf="game.winner === 'player1'" src="../../assets/cup.svg"> </div>
+            <div>{{ game.date | date: 'short' }}</div>
+            <div [ngClass]="{ 'winner winner-right': game.winner === 'player2' }">{{ game.playerTwo }} <img *ngIf="game.winner === 'player2'" src="../../assets/cup.svg"> </div>
+        </li>
+    </ul>
+  </ng-template>
+</swiper>

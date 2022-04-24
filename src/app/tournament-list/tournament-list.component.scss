@@ -1,0 +1,107 @@
+@import "swiper/scss";
+@import "swiper/scss/navigation";
+
+.title {
+  font-size: 12px;
+  @media screen and (min-width: 408px) {
+    font-size: 20px;
+  }
+  font-weight: 700;
+  font-style: italic;
+  color: rgb(184, 199, 231);
+  span {
+    color: rgb(88, 17, 88)
+  }
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tournament {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  width: 80%;
+  max-width: 560px;
+  background-color: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(8px);
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 400;
+  color: rgb(38, 38, 38);
+
+  &-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    @media screen and (min-width: 408px) {
+      padding: 5px 0;
+      
+    }
+   
+    &:not(:last-child) {
+      border-bottom: 1px solid #aaa;
+    }
+
+    div {
+      position: relative;
+      width: fit-content;
+      display: flex;
+      justify-self: center;
+    }
+
+    .winner {
+      font-weight: 700;
+      img {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 12px;
+        height: 12px;
+      }
+    }
+
+    .winner-left img {
+      left: -15px
+    }
+    .winner-right img {
+      right: -15px;
+    }
+  }
+  
+  &-title {
+    color: #fff;
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+}
+

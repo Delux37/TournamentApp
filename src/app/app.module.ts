@@ -1,14 +1,18 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { SwiperModule } from 'swiper/angular';
 
 import { AppComponent } from './app.component';
+import { TournamentListComponent } from './tournament-list/tournament-list.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TournamentListComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    SwiperModule
   ],
   providers: [],
   bootstrap: [AppComponent]
