@@ -10,7 +10,7 @@
   font-style: italic;
   color: rgb(184, 199, 231);
   span {
-    color: rgb(88, 17, 88)
+    color: #d2b44b;
   }
 }
 
@@ -111,3 +111,39 @@
   }
 }
 
+.navigation {
+  display: flex;
+  justify-self: center;
+  align-items: center;
+  margin-bottom: 15px;
+  column-gap: 12px;
+  color: rgb(32, 32, 32);
+
+  &-btn {
+    position: relative;
+    &::after {
+      content: "";
+      width: 100%;
+      height: 1px;
+      background-color: #d2b44b;
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+    }
+  }
+}
+
+.rules {
+  font-size: 12px;
+  font-weight: bold;
+  background-color: #fff;
+  border-radius: 14px;
+  padding: 5px;
+  list-style: none;
+  
+  li {
+    &:not(:last-child) {
+      border-bottom: 8px;
+    }
+  }
+}

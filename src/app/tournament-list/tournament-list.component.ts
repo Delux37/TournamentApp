@@ -28,14 +28,15 @@ interface Round {
 export class TournamentListComponent {
   constructor(private http: HttpClient){ }
   public loading = false;
-  
+  public currentPage: 'Schedule' | 'Rules' = 'Schedule'
+
   public rounds: Round[] = [
     {
-      roundTitle: 'Round of 30',
+      roundTitle: 'Round of 26',
       games: []
     },
     {
-      roundTitle: 'Round of 16',
+      roundTitle: 'Round of 13',
       games: []
     },
     {
@@ -53,7 +54,7 @@ export class TournamentListComponent {
   ]
 
   ngOnInit(){
-    this.loading = true
+    this.loading = true;
     this.http.get('https://georgian-beasts-default-rtdb.firebaseio.com/tournament/first/first-round.json')
     .pipe(
       map((res: any) => {
@@ -66,7 +67,7 @@ export class TournamentListComponent {
           this.rounds[0].games.push({
           playerOne: elem.playerOne,
           playerTwo: elem.playerTwo,
-          date: Date.now(),
+          date: elem.date,
         })
       })
       this.loading = false;
