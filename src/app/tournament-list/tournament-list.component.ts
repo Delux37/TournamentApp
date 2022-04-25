@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { map, tap, toArray } from 'rxjs';
 
 // import Swiper core and required modules
 import SwiperCore, { Pagination } from "swiper";
@@ -24,6 +26,9 @@ interface Round {
   encapsulation: ViewEncapsulation.None
 })
 export class TournamentListComponent {
+  constructor(private http: HttpClient){ }
+  public loading = false;
+  
   public rounds: Round[] = [
     {
       roundTitle: 'Round of 30',
@@ -48,37 +53,45 @@ export class TournamentListComponent {
   ]
 
   ngOnInit(){
-    for(let i = 0; i < 15; i++){
-        this.rounds[0].games.push({
-          playerOne: 'Player1',
-          playerTwo: 'Player2',
+    this.loading = true
+    this.http.get('https://georgian-beasts-default-rtdb.firebaseio.com/tournament/first/first-round.json')
+    .pipe(
+      map((res: any) => {
+        const keys = Object.keys(res);
+        return res[keys[0]];
+      })
+    )
+    .subscribe(res => {
+      res.forEach((elem: any) => {
+          this.rounds[0].games.push({
+          playerOne: elem.playerOne,
+          playerTwo: elem.playerTwo,
           date: Date.now(),
-          winner: Math.random() > .5 ? 'player1' : 'player2'
         })
-    }
+      })
+      this.loading = false;
+    })
+
     for(let i = 0; i < 7; i++){
         this.rounds[1].games.push({
-          playerOne: 'Player1',
-          playerTwo: 'Player2',
+          playerOne: '',
+          playerTwo: '',
           date: Date.now(),
-          winner: Math.random() > .5 ? 'player1' : 'player2'
 
         })
     }
     this.rounds[1].games.push({
-      playerOne: 'Player2',
+      playerOne: '',
       playerTwo: '',
       date: Date.now(),
-      winner: Math.random() > .5 ? 'player1' : 'player2'
 
     })
 
     for(let i = 0; i < 4; i++){
       this.rounds[2].games.push({
-        playerOne: 'Player1',
-        playerTwo: 'Player2',
+        playerOne: '',
+        playerTwo: '',
         date: Date.now(),
-        winner: Math.random() > .5 ? 'player1' : 'player2'
 
       })
     }
@@ -86,20 +99,18 @@ export class TournamentListComponent {
 
     for(let i = 0; i < 2; i++){
       this.rounds[3].games.push({
-        playerOne: 'Player1',
-        playerTwo: 'Player2',
+        playerOne: '',
+        playerTwo: '',
         date: Date.now(),
-        winner: Math.random() > .5 ? 'player1' : 'player2'
       })
     }
 
 
     for(let i = 0; i < 1; i++){
       this.rounds[4].games.push({
-        playerOne: 'Player1',
-        playerTwo: 'Player2',
+        playerOne: '',
+        playerTwo: '',
         date: Date.now(),
-        winner: Math.random() > .5 ? 'player1' : 'player2'
       })
     }
   }
