@@ -26,9 +26,9 @@
     <div *ngIf="loading"><img  style="width: 25px" src="https://icon-library.com/images/loading-icon-transparent-background/loading-icon-transparent-background-12.jpg"></div>
     <ul class="tournament" *ngIf="currentPage === 'Schedule'">
         <li class="tournament-item" *ngFor="let game of round.games">
-            <div [ngClass]="{ 'winner winner-left': game.winner === 'player1' }">{{ game.playerOne }} <img *ngIf="game.winner === 'player1'" src="../../assets/cup.svg"> </div>
-            <div>{{ game.date | date: 'short' }}</div>
-            <div [ngClass]="{ 'winner winner-right': game.winner === 'player2' }">{{ game.playerTwo }} <img *ngIf="game.winner === 'player2'" src="../../assets/cup.svg"> </div>
+            <div class="outline" [ngClass]="{ 'winner winner-left': game.winner === 'player1' }">{{ game.playerOne }} <img *ngIf="game.winner === 'player1'" src="../../assets/cup.svg"> </div>
+            <div class="outline" >{{ game.date | date: 'short' }}</div>
+            <div class="outline" [ngClass]="{ 'winner winner-right': game.winner === 'player2' }">{{ game.playerTwo }} <img *ngIf="game.winner === 'player2'" src="../../assets/cup.svg"> </div>
         </li>
     </ul>
     <ul *ngIf="currentPage === 'Rules' " class="rules">

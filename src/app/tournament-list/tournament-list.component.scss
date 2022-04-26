@@ -1,6 +1,8 @@
 @import "swiper/scss";
 @import "swiper/scss/navigation";
 
+
+
 .title {
   font-size: 12px;
   @media screen and (min-width: 408px) {
@@ -117,7 +119,13 @@
   align-items: center;
   margin-bottom: 15px;
   column-gap: 12px;
-  color: rgb(32, 32, 32);
+  color: #fff;
+
+  div {
+    &:hover {
+      cursor: pointer;
+    }
+  }
 
   &-btn {
     position: relative;
@@ -146,4 +154,13 @@
       border-bottom: 8px;
     }
   }
+}
+
+.date {
+  color: rgb(40, 40, 40)
+}
+
+.outline {
+  color: white;
+  text-shadow: -1px -1px 0 rgb(255, 183, 0), 1px -1px 0 rgb(255, 183, 0), -1px 1px 0 rgb(255, 183, 0), 1px 1px 0 rgb(255, 183, 0);
 }
