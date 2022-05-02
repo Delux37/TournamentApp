@@ -49,7 +49,8 @@
 }
 
 .tournament {
-  display: flex;
+  display: grid;
+  grid-auto-rows: 1fr;
   flex-direction: column;
   list-style: none;
   width: 80%;

@@ -36,7 +36,7 @@ export class TournamentListComponent {
       games: []
     },
     {
-      roundTitle: 'Round of 13',
+      roundTitle: 'Round of 10',
       games: []
     },
     {
@@ -54,6 +54,12 @@ export class TournamentListComponent {
   ]
 
   ngOnInit(){
+    // console.log(new Date('May 7, 2022 19:00:00').getTime())
+    // console.log(new Date('May 7, 2022 19:15:00').getTime())
+    // console.log(new Date('May 7, 2022 19:30:00').getTime())
+    // console.log(new Date('May 7, 2022 19:45:00').getTime())
+    // console.log(new Date('May 7, 2022 20:00:00').getTime())
+
     this.loading = true;
     this.http.get('https://georgian-beasts-default-rtdb.firebaseio.com/tournament/first/first-round.json')
     .pipe(
@@ -68,51 +74,91 @@ export class TournamentListComponent {
           playerOne: elem.playerOne,
           playerTwo: elem.playerTwo,
           date: elem.date,
+          winner: elem.winner
         })
       })
       this.loading = false;
     })
 
-    for(let i = 0; i < 7; i++){
-        this.rounds[1].games.push({
-          playerOne: '',
-          playerTwo: '',
-          date: Date.now(),
-
+    this.http.get('https://georgian-beasts-default-rtdb.firebaseio.com/tournament/first/second-round.json')
+    .pipe(
+      map((res: any) => {
+        const keys = Object.keys(res);
+        return res[keys[0]];
+      })
+    )
+    .subscribe(res => {
+      res.forEach((elem: any) => {
+          this.rounds[1].games.push({
+          playerOne: elem.playerOne,
+          playerTwo: elem.playerTwo,
+          date: elem.date,
+          winner: elem.winner
         })
-    }
-    this.rounds[1].games.push({
-      playerOne: '',
-      playerTwo: '',
-      date: Date.now(),
+      })
+      this.loading = false;
 
+      console.log(this.rounds[0].games)
     })
 
-    for(let i = 0; i < 4; i++){
-      this.rounds[2].games.push({
-        playerOne: '',
-        playerTwo: '',
-        date: Date.now(),
 
-      })
-    }
+    this.rounds[2]
+      .games
+      .push(
+        {
+          playerOne: '',
+          playerTwo: '',
+          date: new Date('May 7, 2022 21:00:00').getTime()
+        }
+      )
+
+    this.rounds[2]
+      .games
+      .push(
+        {
+          playerOne: '',
+          playerTwo: '',
+          date: new Date('May 7, 2022 21:30:00').getTime()
+        }
+      )
+
+    this.rounds[2]
+      .games
+      .push(
+        {
+          playerOne: '',
+          playerTwo: '',
+          date: 0
+        }
+      )
 
 
-    for(let i = 0; i < 2; i++){
-      this.rounds[3].games.push({
-        playerOne: '',
-        playerTwo: '',
-        date: Date.now(),
-      })
-    }
 
 
-    for(let i = 0; i < 1; i++){
+    this.rounds[3]
+      .games
+      .push(
+        {
+          playerOne: '',
+          playerTwo: '',
+          date: new Date('May 8, 2022 19:00:00').getTime()
+        }
+      )
+    this.rounds[3]
+      .games
+      .push(
+        {
+          playerOne: '',
+          playerTwo: '',
+          date: 0
+        }
+      )
+
+
       this.rounds[4].games.push({
         playerOne: '',
         playerTwo: '',
-        date: Date.now(),
+        date: new Date('May 8, 2022 22:00:00').getTime()
       })
-    }
   }
 }
