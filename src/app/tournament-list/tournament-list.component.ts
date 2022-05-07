@@ -28,7 +28,7 @@ interface Round {
 })
 export class TournamentListComponent {
   startSlide!: number;
-
+  
 
   constructor(private http: HttpClient){}
   public loading = false;
